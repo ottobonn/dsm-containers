@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    hostname: pihole
+    domainname: apps.ivy.travisgeis.com
+    cap_add:
+      - NET_ADMIN
+    networks:
+      default:
+        ipv4_address: 192.168.0.203
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+    ports:
+      - 443/tcp
+      - 53/tcp
+      - 53/udp
+      - 67/udp
+      - 80/tcp
+    volumes:
+       - './etc-pihole/:/etc/pihole/'
+       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    environment:
+      WEBPASSWORD: ''
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: vlan
