@@ -9,7 +9,6 @@ services:
     volumes:
       - /var/services/homes/ottobonn/home-assistant/config:/config
     devices:
-      - "/dev/ttyUSB0:/zwavestick:rwm"
       - "/dev/ttyUSB1:/zigbeestick:rwm"
     restart: unless-stopped
 

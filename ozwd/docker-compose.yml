@@ -1,0 +1,28 @@
+version: '3'
+services:
+  ozwd:
+    image: openzwave/ozwdaemon:latest
+    container_name: "ozwd"
+    networks:
+      default:
+        ipv4_address: 192.168.0.204
+    security_opt:
+      - seccomp:unconfined
+    devices:
+      - "/dev/ttyUSB0:/zwavestick:rwm"
+    volumes:
+      - './config:/opt/ozw/config'
+      - './open-zwave/config:/opt/ozw/custom-config'
+    ports:
+      - "1983:1983"
+    environment:
+      MQTT_SERVER: '192.168.0.205'
+      USB_PATH: '/zwavestick'
+      OZW_NETWORK_KEY: '<redacted>'
+      OZW_CONFIG_DIR: '/opt/ozw/custom-config'
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: vlan
