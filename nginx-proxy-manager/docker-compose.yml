@@ -1,7 +1,7 @@
 version: "2"
 services:
   app:
-    image: jc21/nginx-proxy-manager:2
+    image: jc21/nginx-proxy-manager:latest
     container_name: nginx-proxy-manager
     restart: always
     networks:
@@ -25,7 +25,7 @@ services:
     depends_on:
       - db
   db:
-    image: jc21/mariadb-aria:10.4
+    image: jc21/mariadb-aria:10.4.15-innodb
     container_name: nginx-db
     restart: always
     environment:

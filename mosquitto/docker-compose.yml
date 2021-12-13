@@ -3,9 +3,7 @@ services:
   mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto
-    networks:
-      default:
-        ipv4_address: 192.168.0.205
+    network_mode: host
     restart: unless-stopped
     ports:
       - "1883:1883"
@@ -13,8 +11,3 @@ services:
     volumes:
       - ./etc-mosquitto:/etc/mosquitto
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-
-networks:
-  default:
-    external:
-      name: vlan

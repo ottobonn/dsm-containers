@@ -3,16 +3,11 @@ services:
   home-assistant:
     container_name: home-assistant
     image: homeassistant/home-assistant:stable
-    networks:
-      default:
-        ipv4_address: 192.168.0.202
+    privileged: true
+    network_mode: host
     volumes:
-      - /var/services/homes/ottobonn/home-assistant/config:/config
+      - ./config:/config
     devices:
+      - "/dev/ttyUSB0:/zwavestick:rwm"
       - "/dev/ttyUSB1:/zigbeestick:rwm"
     restart: unless-stopped
-
-networks:
-  default:
-    external:
-      name: vlan

@@ -18,7 +18,7 @@ services:
     environment:
       MQTT_SERVER: '192.168.0.205'
       USB_PATH: '/zwavestick'
-      OZW_NETWORK_KEY: '<redacted>'
+      OZW_NETWORK_KEY: '0x38, 0xab, 0xf0, 0x1b, 0xcb, 0x6c, 0x9d, 0x23, 0xf7, 0xe7, 0xb3, 0x5c, 0x11, 0x9f, 0xca, 0x76'
       OZW_CONFIG_DIR: '/opt/ozw/custom-config'
     restart: unless-stopped
 
